@@ -98,7 +98,6 @@ exports.reply = functions.https.onRequest((request, response) => {
     // app.post('/reply', (request, response) => {
     const twiml = new MessagingResponse();
     const message = twiml.message();
-    // message.body('Hello from Firebase in XML!');
     console.log('Request body: ' + JSON.stringify(request.body));
     if (request.body.Body.trim() === 'Subscribe' || request.body.Body.trim() === 'subscribe') {
         console.log('Received a subscription text');
@@ -133,104 +132,9 @@ exports.reply = functions.https.onRequest((request, response) => {
         message.body('Welcome to Daily Motivation. Text "Subscribe" receive updates.');
         console.log('Sent intro text');
     }
-    // if (request.body.Body.toLowerCase() === 'subscribe' ) {
-    //     message.body('Hello from Firebase in XML!');
-    // } else {
-    //     message.body('Welcome to Daily Motivation. Text "Subscribe" receive updates.');
-    // }
     response.writeHead(200, { 'Content-Type': 'text/xml' });
     response.end(twiml.toString());
-    // if( request.body.Body.trim().toLowerCase() === 'subscribe' ) {
-    //     console.log('Received a subscription text');
-    //     const fromNum = request.body.From;
-    //   admin.database().ref('/subscribedNumbers').once('value')
-    //   .then( snap => {
-    //       const numbers = snap.val();
-    //       console.log('Subscription numbers so far: ' + numbers);
-    //       if(numbers.indexOf(fromNum) !== -1) {
-    //         messResponse.message('You already subscribed!');
-    //         console.log('User already subscribed');
-    //         response.status(200).type('text/xml').end(response.toString());
-    //         return
-    //       } else {
-    //         messResponse.message('Thank you, you are now subscribed. Reply "STOP" to stop receiving updates.');
-    //         console.log('New user subscribed!');
-    //         admin.database().ref('/subscribedNumbers').push({fromNum}).then(snapshot => {
-    //             console.log('Added new subscriber to db');
-    //             response.status(200).type('text/xml').end(response.toString());
-    //             return
-    //         });
-    //       }
-    //     });
-    // } else {
-    //     messResponse.message('Welcome to Daily Motivation. Text "Subscribe" receive updates.');
-    //     console.log('Sent intro text');
-    // }
-    // response.writeHead(200, {
-    //   'Content-Type':'text/xml'
-    // });
-    // response.end(response.toString());
-    //exports.reply = (request, response) => {
-    // console.log('Someone hit the reply url');
-    // let isValid = true;
-    // isValid = twilio.validateExpressRequest(request, authToken, {
-    //     //`https://${region}-${projectId}.cloudfunctions.net/reply`
-    //     url: 'https://us-central1-motivational-54422.cloudfunctions.net/reply'
-    // });
-    // if (!isValid) {
-    //     console.log('Not valid request');
-    //     response
-    //     .type('text/plain')
-    //     .status(403)
-    //     .send('Twilio Request Validation Failed.')
-    //     .end();
-    //     return;
-    // }
-    //console.log('Created message object');
-    // Prepare a response to the SMS message
-    // const twiml = new MessagingResponse();
-    // const message = twiml.message();
-    // message.body('Hello from Firebase!');
-    // response.writeHead(200, {'Content-Type': 'text/xml'});
-    // response.end(twiml.toString());
-    //smsResponse.message('Hello from Firebase!');
-    // send the response
-    // response.status(200)
-    // .type('text/xml')
-    // .end(response.toString());
-    //};
-    // if( request.body.Body.trim().toLowerCase() === 'subscribe' ) {
-    //     console.log('Received a subscription text');
-    //     const fromNum = request.body.From;
-    //   admin.database().ref('/subscribedNumbers').once('value')
-    //   .then( snap => {
-    //       const numbers = snap.val();
-    //       console.log('Subscription numbers so far: ' + numbers);
-    //       if(numbers.indexOf(fromNum) !== -1) {
-    //         messResponse.message('You already subscribed!');
-    //         console.log('User already subscribed');
-    //         response.status(200).type('text/xml').end(response.toString());
-    //         return
-    //       } else {
-    //         messResponse.message('Thank you, you are now subscribed. Reply "STOP" to stop receiving updates.');
-    //         console.log('New user subscribed!');
-    //         admin.database().ref('/subscribedNumbers').push({fromNum}).then(snapshot => {
-    //             console.log('Added new subscriber to db');
-    //             response.status(200).type('text/xml').end(response.toString());
-    //             return
-    //         });
-    //       }
-    //     });
-    // } else {
-    //     messResponse.message('Welcome to Daily Motivation. Text "Subscribe" receive updates.');
-    //     console.log('Sent intro text');
-    // }
-    // response.writeHead(200, {
-    //   'Content-Type':'text/xml'
-    // });
-    // response.end(response.toString());
 });
-//exports.app = functions.https.onRequest(app);
 // // Take the text parameter passed to this HTTP endpoint and insert it into the
 // // Realtime Database under the path /messages/:pushId/original
 // export const addMessage = functions.https.onRequest((req, res) => {
